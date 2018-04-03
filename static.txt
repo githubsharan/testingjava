@@ -1,0 +1,163 @@
+satic example
+
+class SimpleStaticExample
+{
+    // This is a static method
+    static void myMethod()
+    {
+        System.out.println("myMethod");
+    }
+ 
+    public static void main(String[] args)
+    {
+          /* You can see that we are calling this
+           * method without creating any object. 
+           */
+           myMethod();
+    }
+}
+-----------------------------------------------
+
+single static block
+
+class JavaExample{
+   static int num;
+   static String mystr;
+   static{
+      num = 97;
+      mystr = "Static keyword in Java";
+   }
+   public static void main(String args[])
+   {
+      System.out.println("Value of num: "+num);
+      System.out.println("Value of mystr: "+mystr);
+   }
+}
+------------------------------------------
+
+multiple static blocks
+
+class JavaExample2{
+   static int num;
+   static String mystr;
+   //First Static block
+   static{
+      System.out.println("Static Block 1");
+      num = 68;
+      mystr = "Block1";
+  } 
+  //Second static block
+  static{
+      System.out.println("Static Block 2");
+      num = 98;
+      mystr = "Block2";
+  }
+  public static void main(String args[])
+  {
+      System.out.println("Value of num: "+num);
+      System.out.println("Value of mystr: "+mystr);
+   }
+}
+
+
+---------------------------------------------------------
+
+static variables
+
+class JavaExample3{
+  static int var1;
+  static String var2;
+  //This is a Static Method
+  static void disp(){
+      System.out.println("Var1 is: "+var1);
+      System.out.println("Var2 is: "+var2);
+  }
+  public static void main(String args[]) 
+  {
+      disp();
+  }
+}
+------------------------------------------
+
+static var r shared among all instances
+
+class JavaExample{
+   //Static integer variable
+   static int var1=77; 
+   //non-static string variable
+   String var2;
+
+   public static void main(String args[])
+   {
+	JavaExample ob1 = new JavaExample();
+	JavaExample ob2 = new JavaExample();
+	
+        //Assigning the value to static variable using object ob1
+	ob1.var1=88;
+	ob1.var2="I'm Object1";
+       
+        ob2.var1=99;
+	ob2.var2="I'm Object2";
+	System.out.println("ob1 integer:"+ob1.var1);
+	System.out.println("ob1 String:"+ob1.var2);
+	System.out.println("ob2 integer:"+ob2.var1);
+	System.out.println("ob2 STring:"+ob2.var2);
+   }
+}
+
+---------------------------------------------------------------
+Static method accessed directly in static and non-static method
+
+class JavaExample{
+  static int i = 100;
+  static String s = "Beginnersbook";
+  //Static method
+  static void display()
+  {
+     System.out.println("i:"+i);
+     System.out.println("i:"+s);
+  }
+
+  //non-static method
+  void funcn()
+  {
+      //Static method called in non-static method
+      display();
+  }
+  //static method
+  public static void main(String args[])
+  {
+	  JavaExample obj = new JavaExample();
+	  //You need to have object to call this non-static method
+	  obj.funcn();
+	  
+      //Static method called in another static method
+      display();
+   }
+}
+
+-----------------------------------------------
+Static class
+
+lass JavaExample{
+   private static String str = "BeginnersBook";
+
+   //Static class
+   static class MyNestedClass{
+	//non-static method
+	public void disp() {
+
+	 	   System.out.println(str); 
+	}
+
+   }
+   public static void main(String args[])
+   {
+       /* To create instance of nested class we didn't need the outer
+	* class instance but for a regular nested class you would need 
+	* to create an instance of outer class first
+        */
+	JavaExample.MyNestedClass obj = new JavaExample.MyNestedClass();
+	obj.disp();
+   }
+}

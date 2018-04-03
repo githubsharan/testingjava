@@ -1,0 +1,51 @@
+class PassByValue
+{
+    public static void main(String s[])
+    {
+        int i = 5;
+        System.out.println("i before increment : " + i);
+        increment(i);
+        System.out.println("i after increment : " + i);
+    }
+    
+    public static void increment(int i)
+    {
+        System.out.println("i before increment in method : " + i);
+        i++;
+        System.out.println("i after increment in method : " + i);
+    }
+}
+
+
+
+-----------------------------------------------------------
+
+class PassByReference
+{
+    public static void main(String args[])
+    {
+        Student1 sMain = new Student1();
+        sMain.name = "Jagan";
+        sMain.marks = 93;
+        sMain.section = 'B';
+    
+        System.out.println("Marks before incrementing : " + sMain.marks);
+        incrementMarks(sMain);
+        System.out.println("Marks after incrementing : " + sMain.marks);
+    }
+    
+    public static void incrementMarks(Student1 sMethod)
+    {
+        System.out.println("Marks before incrementing in the method: " + sMethod.marks);
+        //sMethod.marks = sMethod.marks + 1;
+        sMethod.marks++;
+        System.out.println("Marks after incrementing in the method: " + sMethod.marks);
+    }
+}
+
+class Student1
+{
+    String name;
+    int marks;
+    char section;
+}

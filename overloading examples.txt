@@ -1,0 +1,175 @@
+Overloading – Different Number of parameters in argument list
+
+class DisplayOverloading
+{
+    public void disp(char c)
+    {
+         System.out.println(c);
+    }
+    public void disp(char c, int num)  
+    {
+         System.out.println(c + " "+num);
+    }
+}
+class Sample
+{
+   public static void main(String args[])
+   {
+       DisplayOverloading obj = new DisplayOverloading();
+       obj.disp('a');
+       obj.disp('a',10);
+   }
+}
+-------------------------------------------------------------
+Overloading – Difference in data type of parameters
+
+
+class DisplayOverloading2
+{
+    public void disp(char c)
+    {
+        System.out.println(c);
+    }
+    public void disp(int c)
+    {
+       System.out.println(c );
+    }
+}
+
+class Sample2
+{
+    public static void main(String args[])
+    {
+        DisplayOverloading2 obj = new DisplayOverloading2();
+        obj.disp('a');
+        obj.disp(5);
+    }
+}
+
+
+--------------------------------------------------------------
+
+Overloading – Sequence of data type of arguments
+
+
+class DisplayOverloading3
+{
+   public void disp(char c, int num)
+   {
+       System.out.println("I’m the first definition of method disp");
+   }
+   public void disp(int num, char c)
+   {
+       System.out.println("I’m the second definition of method disp" );
+   }
+}
+class Sample3
+{
+   public static void main(String args[])
+   {
+       DisplayOverloading3 obj = new DisplayOverloading3();
+       obj.disp('x', 51 );
+       obj.disp(52, 'y');
+   }
+}
+
+---------------------------------------------------
+
+Method Overloading and Type Promotion
+
+
+
+class Demo{
+   void disp(int a, double b){
+	System.out.println("Method A");
+   }
+   void disp(int a, double b, double c){
+	System.out.println("Method B");
+   }
+   public static void main(String args[]){
+	Demo obj = new Demo();
+	/* I am passing float value as a second argument but
+	 * it got promoted to the type double, because there
+	 * wasn't any method having arg list as (int, float)
+	 */
+	obj.disp(100, 20.67f);
+   }
+}
+
+class Demo{
+   void disp(int a, double b){
+	System.out.println("Method A");
+   }
+   void disp(int a, double b, double c){
+	System.out.println("Method B");
+   }
+   void disp(int a, float b){
+	System.out.println("Method C");
+   }
+   public static void main(String args[]){
+	Demo obj = new Demo();
+	/* This time promotion won't happen as there is
+	 * a method with arg list as (int, float)
+	 */
+	obj.disp(100, 20.67f);
+   }
+}
+
+-----------------------------------------------------------------
+
+
+questions
+---------
+
+lass Demo
+{
+   public int myMethod(int num1, int num2)
+   { 
+       System.out.println("First myMethod of class Demo");
+       return num1+num2;
+   }
+   public int myMethod(int var1, int var2)
+   {
+       System.out.println("Second myMethod of class Demo");
+       return var1-var2;
+   }
+}
+class Sample4
+{
+   public static void main(String args[])
+   {
+       Demo obj1= new Demo();
+       obj1.myMethod(10,10);
+       obj1.myMethod(20,12);
+   }
+}
+
+----------------------------------------
+
+
+
+class Demo2
+{
+   public double myMethod(int num1, int num2)
+   {
+      System.out.println("First myMethod of class Demo");
+      return num1+num2;
+   }
+   public int myMethod(int var1, int var2)
+   {
+      System.out.println("Second myMethod of class Demo");
+      return var1-var2;
+   }
+}
+class Sample5
+{
+   public static void main(String args[])
+   {
+      Demo2 obj2= new Demo2();
+      obj2.myMethod(10,10);
+      obj2.myMethod(20,12);
+   }
+}
+
+
+-----------------------------------------------

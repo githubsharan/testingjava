@@ -1,0 +1,123 @@
+class Human{
+   //Overridden method
+   public void eat()
+   {
+      System.out.println("Human is eating");
+   }
+}
+class Boy extends Human{
+   //Overriding method
+   public void eat(){
+      System.out.println("Boy is eating");
+   }
+   public static void main( String args[]) {
+      Boy obj = new Boy();
+      //This will call the child class version of eat()
+      obj.eat();
+   }
+}
+
+----------------------------------------------
+
+
+class ABC{
+   //Overridden method
+   public void disp()
+   {
+	System.out.println("disp() method of parent class");
+   }	   
+}
+class Demo extends ABC{
+   //Overriding method
+   public void disp(){
+	System.out.println("disp() method of Child class");
+   }
+   public void newMethod(){
+	System.out.println("new method of child class");
+   }
+   public static void main( String args[]) {
+	/* When Parent class reference refers to the parent class object
+	 * then in this case overridden method (the method of parent class)
+	 *  is called.
+	 */
+	ABC obj = new ABC();
+	obj.disp();
+
+	/* When parent class reference refers to the child class object
+	 * then the overriding method (method of child class) is called.
+	 * This is called dynamic method dispatch and runtime polymorphism
+	 */
+	ABC obj2 = new Demo();
+	obj2.disp();
+   }
+}
+
+
+----------------------------------------------------------------
+
+
+cannot have less access modifirers
+
+
+class MyBaseClass{
+   public void disp()
+   {
+       System.out.println("Parent class method");
+   }
+}
+class MyChildClass extends MyBaseClass{
+   protected void disp(){
+      System.out.println("Child class method");
+   }
+   public static void main( String args[]) {
+      MyChildClass obj = new MyChildClass();
+      obj.disp();
+   }
+}
+
+------------------------------------------------------------------
+
+this is ok
+
+class MyBaseClass{
+   protected void disp()
+   {
+       System.out.println("Parent class method");
+   }
+}
+class MyChildClass extends MyBaseClass{
+   public void disp(){
+      System.out.println("Child class method");
+   }
+   public static void main( String args[]) {
+      MyChildClass obj = new MyChildClass();
+      obj.disp();
+   }
+}
+
+---------------------------------------------------------------
+
+Super keyword in Method Overriding
+
+
+class ABC{
+   public void myMethod()
+   {
+	System.out.println("Overridden method");
+   }	   
+}
+class Demo extends ABC{
+   public void myMethod(){
+	//This will call the myMethod() of parent class
+	super.myMethod();
+	System.out.println("Overriding method");
+   }
+   public static void main( String args[]) {
+	Demo obj = new Demo();
+	obj.myMethod();
+   }
+}
+
+
+-------------------------------------------------------------
+

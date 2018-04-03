@@ -1,0 +1,117 @@
+ublic class Hello {
+   String name;
+   //Constructor
+   Hello(){
+      this.name = "BeginnersBook.com";
+   }
+   public static void main(String[] args) {
+      Hello obj = new Hello();
+      System.out.println(obj.name);
+   }
+}
+-----------------------------------------------
+
+public class ConstructorExample {
+
+   int age;
+   String name;
+	
+   //Default constructor
+   ConstructorExample(){
+	this.name="Chaitanya";
+	this.age=30;
+   }
+	
+   //Parameterized constructor
+   ConstructorExample(String n,int a){
+	this.name=n;
+	this.age=a;
+   }
+   public static void main(String args[]){
+	ConstructorExample obj1 = new ConstructorExample();
+	ConstructorExample obj2 = 
+		       new ConstructorExample("Steve", 56);
+	System.out.println(obj1.name+" "+obj1.age);
+	System.out.println(obj2.name+" "+obj2.age);
+   }
+}
+--------------------------------------------------------
+class Example2
+{
+      private int var;
+      //default constructor
+      public Example2()
+      {
+             this.var = 10;
+      }
+      //parameterized constructor
+      public Example2(int num)
+      {
+             this.var = num;
+      }
+      public int getValue()
+      {
+              return var;
+      }
+      public static void main(String args[])
+      {
+              Example2 obj = new Example2();
+              Example2 obj2 = new Example2(100);
+              System.out.println("var is: "+obj.getValue());
+              System.out.println("var is: "+obj2.getValue());
+      }
+}
+---------------------------------------------------
+class Example3
+{
+      private int var;
+      public Example3(int num)
+      {
+             var=num;
+      }
+      public int getValue()
+      {
+              return var;
+      }
+      public static void main(String args[])
+      {
+              Example3 myobj = new Example3();
+              System.out.println("value of var is: "+myobj.getValue());
+      }
+}
+------------------------------------------
+
+constructor chaining
+----------------------------------
+copy constructor
+
+class JavaExample{  
+   String web; 
+   JavaExample(String w){  
+	web = w;
+   }  
+
+   /* This is the Copy Constructor, it 
+    * copies the values of one object
+    * to the another object (the object
+    * that invokes this constructor)
+    */
+   JavaExample(JavaExample je){  
+	web = je.web; 
+   }  
+   void disp(){
+	System.out.println("Website: "+web);
+   }  
+
+   public static void main(String args[]){  
+	JavaExample obj1 = new JavaExample("BeginnersBook");  
+		
+	/* Passing the object as an argument to the constructor
+	 * This will invoke the copy constructor
+	 */
+	JavaExample obj2 = new JavaExample(obj1);  
+	obj1.disp();  
+	obj2.disp();  
+   }  
+}
+---------------------------------------------------------

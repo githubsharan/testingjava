@@ -1,0 +1,153 @@
+syntax
+
+interface MyInterface
+{
+   /* All the methods are public abstract by default
+    * As you see they have no body
+    */
+   public void method1();
+   public void method2();
+}
+
+
+---------------------------------------------------
+
+
+example
+
+
+
+interface MyInterface
+{
+   /* compiler will treat them as: 
+    * public abstract void method1();
+    * public abstract void method2();
+    */
+   public void method1();
+   public void method2();
+}
+class Demo implements MyInterface
+{
+   /* This class must have to implement both the abstract methods
+    * else you will get compilation error
+    */
+   public void method1()
+   {
+	System.out.println("implementation of method1");
+   }
+   public void method2()
+   {
+	System.out.println("implementation of method2");
+   }
+   public static void main(String arg[])
+   {
+	MyInterface obj = new Demo();
+	obj.method1();
+   }
+}
+
+
+---------------------------------
+
+interface and inheritane
+
+interface Inf1{
+   public void method1();
+}
+interface Inf2 extends Inf1 {
+   public void method2();
+}
+public class Demo implements Inf2{
+   /* Even though this class is only implementing the
+    * interface Inf2, it has to implement all the methods 
+    * of Inf1 as well because the interface Inf2 extends Inf1
+    */
+    public void method1(){
+	System.out.println("method1");
+    }
+    public void method2(){
+	System.out.println("method2");
+    }
+    public static void main(String args[]){
+	Inf2 obj = new Demo();
+	obj.method2();
+    }
+}
+
+-------------------------------------
+implementation only once
+
+interface A
+{
+   public void aaa();
+}
+interface B
+{
+   public void aaa();
+}
+class Central implements A,B
+{
+   public void aaa()
+   {
+        //Any Code here
+   }
+   public static void main(String args[])
+   {
+        //Statements
+    }
+}
+
+----------------------------------------\\\
+
+same name but different retun type
+
+
+interface A
+{
+   public void aaa();
+}
+interface B
+{
+   public int aaa();
+}
+
+class Central implements A,B
+{
+
+   public void aaa() // error
+   {
+   }
+   public int aaa() // error
+   {
+   }
+   public static void main(String args[])
+   {
+
+   }
+}
+
+------------------------------
+
+interface A
+{
+    int x=10;
+}
+interface B
+{
+    int x=100;
+}
+class Hello implements A,B
+{
+    public static void Main(String args[])
+    {
+       /* reference to x is ambiguous both variables are x
+        * so we are using interface name to resolve the 
+        * variable
+        */
+       System.out.println(x); 
+       System.out.println(A.x);
+       System.out.println(B.x);
+    }
+}
+----------------------------------
+
