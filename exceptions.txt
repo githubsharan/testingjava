@@ -1,0 +1,347 @@
+checked exception
+
+import java.io.*;
+class Example {  
+   public static void main(String args[]) 
+   {
+	FileInputStream fis = null;
+	/*This constructor FileInputStream(File filename)
+	 * throws FileNotFoundException which is a checked
+	 * exception
+         */
+        fis = new FileInputStream("B:/myfile.txt"); 
+	int k; 
+
+	/* Method read() of FileInputStream class also throws 
+	 * a checked exception: IOException
+         */
+	while(( k = fis.read() ) != -1) 
+	{ 
+		System.out.print((char)k); 
+	} 
+
+	/*The method close() closes the file input stream
+	 * It throws IOException*/
+	fis.close(); 	
+   }
+}
+
+----------------------------------------------------------
+
+Method 1: Declare the exception using throws keyword.
+
+import java.io.*;
+class Example {  
+   public static void main(String args[]) throws IOException
+   {
+      FileInputStream fis = null;
+      fis = new FileInputStream("B:/myfile.txt"); 
+      int k; 
+
+      while(( k = fis.read() ) != -1) 
+      { 
+	   System.out.print((char)k); 
+      } 
+      fis.close(); 	
+   }
+}
+
+---------------------------------------------
+
+Method 2: Handle them using try-catch blocks.
+
+import java.io.*;
+class Example {  
+   public static void main(String args[])
+   {
+	FileInputStream fis = null;
+	try{
+	    fis = new FileInputStream("B:/myfile.txt"); 
+	}catch(FileNotFoundException fnfe){
+            System.out.println("The specified file is not " +
+			"present at the given path");
+	 }
+	int k; 
+	try{
+	    while(( k = fis.read() ) != -1) 
+	    { 
+		System.out.print((char)k); 
+	    } 
+	    fis.close(); 
+	}catch(IOException ioe){
+	    System.out.println("I/O error occurred: "+ioe);
+	 }
+   }
+}
+
+------------------------------------------------------
+
+unchecked exception
+
+class Example {  
+   public static void main(String args[])
+   {
+	int num1=10;
+	int num2=0;
+	/*Since I'm dividing an integer with 0
+	 * it should throw ArithmeticException
+         */
+	int res=num1/num2;
+	System.out.println(res);
+   }
+}
+
+----------------------------------------
+
+class Example {  
+   public static void main(String args[])
+   {
+	int arr[] ={1,2,3,4,5};
+	/* My array has only 5 elements but we are trying to 
+         * display the value of 8th element. It should throw
+	 * ArrayIndexOutOfBoundsException
+         */
+	System.out.println(arr[7]);
+   }
+}
+
+-----------------------------------
+
+class Example {  
+   public static void main(String args[]) {
+	try{
+	   int arr[] ={1,2,3,4,5};
+	   System.out.println(arr[7]);
+	}
+        catch(ArrayIndexOutOfBoundsException e){
+	   System.out.println("The specified index does not exist " +
+		"in array. Please correct the error.");
+	}
+   }
+}
+
+------------------------------------------------
+Try-Catch
+
+
+class Example1 {
+   public static void main(String args[]) {
+      int num1, num2;
+      try {
+         /* We suspect that this block of statement can throw 
+          * exception so we handled it by placing these statements
+          * inside try and handled the exception in catch block
+          */
+         num1 = 0;
+         num2 = 62 / num1;
+         System.out.println(num2);
+         System.out.println("Hey I'm at the end of try block");
+      }
+      catch (ArithmeticException e) { 
+         /* This block will only execute if any Arithmetic exception 
+          * occurs in try block
+          */
+         System.out.println("You should not divide a number by zero");
+      }
+      catch (Exception e) {
+         /* This is a generic Exception handler which means it can handle
+          * all the exceptions. This will execute if the exception is not
+          * handled by previous catch blocks.
+          */
+         System.out.println("Exception occurred");
+      }
+      System.out.println("I'm out of try-catch block in Java.");
+   }
+}
+
+------------------------------------------------------
+Multiple try catch
+
+class Example2{
+   public static void main(String args[]){
+     try{
+         int a[]=new int[7];
+         a[4]=30/0;
+         System.out.println("First print statement in try block");
+     }
+     catch(ArithmeticException e){
+        System.out.println("Warning: ArithmeticException");
+     }
+     catch(ArrayIndexOutOfBoundsException e){
+        System.out.println("Warning: ArrayIndexOutOfBoundsException");
+     }
+     catch(Exception e){
+        System.out.println("Warning: Some Other exception");
+     }
+   System.out.println("Out of try-catch block...");
+  }
+}
+
+----------------------------------
+Catching multiple exceptions
+
+class Example{
+   public static void main(String args[]){
+      try{
+         int arr[]=new int[7];
+         arr[4]=30/0;
+         System.out.println("Last Statement of try block");
+      }
+      catch(ArithmeticException e){
+         System.out.println("You should not divide a number by zero");
+      }
+      catch(ArrayIndexOutOfBoundsException e){
+         System.out.println("Accessing array elements outside of the limit");
+      }
+      catch(Exception e){
+         System.out.println("Some Other Exception");
+      }
+      System.out.println("Out of the try-catch block");
+   }
+}--------------------------------------
+
+class Example{
+   public static void main(String args[]){
+      try{
+         int arr[]=new int[7];
+         arr[10]=10/5;
+         System.out.println("Last Statement of try block");
+      }
+      catch(ArithmeticException e){
+         System.out.println("You should not divide a number by zero");
+      }
+      catch(ArrayIndexOutOfBoundsException e){
+         System.out.println("Accessing array elements outside of the limit");
+      }
+      catch(Exception e){
+         System.out.println("Some Other Exception");
+      }
+      System.out.println("Out of the try-catch block");
+   }
+}
+
+---------------------------------------------------
+
+
+class Example{
+   public static void main(String args[]){
+      try{
+         int arr[]=new int[7];
+         arr[10]=10/5;
+         System.out.println("Last Statement of try block");
+      }
+      catch(Exception e){
+         System.out.println("Some Other Exception");
+      }
+      catch(ArithmeticException e){
+         System.out.println("You should not divide a number by zero");
+      }
+      catch(ArrayIndexOutOfBoundsException e){
+         System.out.println("Accessing array elements outside of the limit");
+      }
+      System.out.println("Out of the try-catch block");
+   }
+}
+
+
+--------------------------------------------------------
+
+Nested 
+
+class NestingDemo{
+   public static void main(String args[]){
+      //main try-block
+      try{
+    	//try-block2
+        try{     
+            //try-block3
+            try{
+            	int arr[]= {1,2,3,4};
+            	/* I'm trying to display the value of
+            	 * an element which doesn't exist. The
+            	 * code should throw an exception
+            	 */
+            	System.out.println(arr[10]);
+            }catch(ArithmeticException e){
+            	System.out.print("Arithmetic Exception");
+            	System.out.println(" handled in try-block3");
+            }
+        }
+        catch(ArithmeticException e){
+           System.out.print("Arithmetic Exception");
+           System.out.println(" handled in try-block2");
+        }
+    }
+    catch(ArithmeticException e3){
+    	System.out.print("Arithmetic Exception");
+     	System.out.println(" handled in main try-block");
+    }
+    catch(ArrayIndexOutOfBoundsException e4){
+    	System.out.print("ArrayIndexOutOfBoundsException");
+     	System.out.println(" handled in main try-block");
+    }
+    catch(Exception e5){
+    	System.out.print("Exception");
+     	System.out.println(" handled in main try-block");
+     }
+  }
+}
+
+
+
+-------------------------------------------------------
+
+Why using Throws
+
+public void myMethod()
+{
+  try {
+    // Statements that might throw an exception 
+  }
+  catch (ArithmeticException e) {
+    // Exception handling statements
+  }
+  catch (NullPointerException e) {
+    // Exception handling statements
+  }
+}
+
+public void myMethod() throws ArithmeticException, NullPointerException
+{
+  // Statements that might throw an exception 
+}
+
+public static void main(String args[]) { 
+  try {
+    myMethod();
+  }
+  catch (ArithmeticException e) {
+    // Exception handling statements
+  }
+  catch (NullPointerException e) {
+    // Exception handling statements
+  }
+}
+
+
+
+import java.io.*;
+class ThrowExample { 
+  void myMethod(int num)throws IOException, ClassNotFoundException{ 
+     if(num==1)
+        throw new IOException("IOException Occurred");
+     else
+        throw new ClassNotFoundException("ClassNotFoundException");
+  } 
+} 
+
+public class Example1{ 
+  public static void main(String args[]){ 
+   try{ 
+     ThrowExample obj=new ThrowExample(); 
+     obj.myMethod(1); 
+   }catch(Exception ex){
+     System.out.println(ex);
+    } 
+  }
+}
